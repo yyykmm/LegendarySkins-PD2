@@ -3,11 +3,10 @@
     "description": "Legendary Skins for your weapons!",
     "author": "tsk",
     "contact": "https://github.com/8fn/LegendarySkins-PD2",
-    "version": "1.0.2",
-    "blt_version": 2,
-    "hooks": [
+    "version": "1.0.4",
+    "persist_scripts": [
         {
-            "hook_id": "lib/setups/setup",
+            "global": "Legendary Skins",
             "script_path": "Scripts/legendary_skins.lua"
         }
     ]
