@@ -1,9 +1,9 @@
--- Purpose: Gives you all skins
--- Authors: Written by Simplity, fixes by Davy Jones/yazeedoo
--- Performance fix: stop the persist script after initialization.
+-- Legendary Skins
+-- Original persist-script lifecycle with one-time completion marker.
 
 local tostring = tostring
 local type = type
+local pairs = pairs
 
 local M_blackmarket = managers.blackmarket
 local weapon_skins = tweak_data.blackmarket.weapon_skins
@@ -35,7 +35,7 @@ for id, data in pairs(weapon_skins) do
     end
 end
 
--- Temporary fix for the temporary fix
+-- Preserve the original compatibility conversion.
 local convert
 
 convert = function()
@@ -55,13 +55,14 @@ function BlackMarketManager:tradable_update()
     end
 end
 
--- Modifiable Legendary Skins
+-- Unlock skin definitions.
 for id, data in pairs(weapon_skins) do
     if not string.find(id, "color") then
         data.locked = false
     end
 end
 
+-- Unlock customization for crafted weapons.
 local crafted = M_blackmarket._global.crafted_items
 
 for _, category in pairs({
@@ -75,12 +76,12 @@ for _, category in pairs({
     end
 end
 
--- Inspect All Safes
+-- Preserve the original safe handling.
 for _, safe in pairs(tweak_data.economy.safes) do
     if not safe.market_link then
         safe.market_link = "Fake Link"
     end
 end
 
--- Required by the original persist_scripts manifest.
+-- Stop SuperBLT's persist script after initialization.
 _G["Legendary Skins"] = true
